@@ -1,3 +1,4 @@
+import { CriterioRicercaDto } from './criterio-ricerca-dto';
 import { ListeAutoDto } from './liste-auto-dto';
 import { AutoDto } from './auto-dto';
 import { Automobile } from './automobile';
@@ -33,7 +34,18 @@ export class AppComponent {
     this.auto = new Automobile();
   }
 
-  ricerca() { }
+  ricerca() {
+    // preparo i dati
+    let criterio = new CriterioRicercaDto();
+    criterio.stringa = this.search;
+
+    // chiamo il REST
+    let oss = this.http.post<ListeAutoDto>(
+      "http://localhost:8080/ricerca-auto",
+      criterio
+    );
+    oss.subscribe(v => this.automobili = v.listaAuto);
+  }
 
   rimuovi() { }
 

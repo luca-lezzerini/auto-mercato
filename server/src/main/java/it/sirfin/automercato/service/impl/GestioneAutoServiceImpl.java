@@ -18,9 +18,16 @@ public class GestioneAutoServiceImpl implements GestioneAutoService {
     public ListeAutoDto inserisciAuto(Automobile auto) {
         // inserisco l'auto
         automobileRepository.save(auto);
-        
+
         // rileggere il DB aggiornato e ritornarlo
         return aggiorna();
+    }
+
+    @Override
+    public ListeAutoDto ricercaAuto(String criterio) {
+        List<Automobile> lista = automobileRepository
+                .findByTargaContainsOrModelloContains(criterio, criterio);
+        return new ListeAutoDto(lista);
     }
 
     @Override
@@ -28,7 +35,5 @@ public class GestioneAutoServiceImpl implements GestioneAutoService {
         List<Automobile> lista = automobileRepository.findAll();
         return new ListeAutoDto(lista);
     }
-    
-    
 
 }
