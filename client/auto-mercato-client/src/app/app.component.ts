@@ -47,7 +47,18 @@ export class AppComponent {
     oss.subscribe(v => this.automobili = v.listaAuto);
   }
 
-  rimuovi() { }
+  rimuovi(autoDaRimuovere: Automobile) {
+    // preparo i dati
+    let dto = new AutoDto();
+    dto.automobile = autoDaRimuovere;
+
+    // chiamo REST
+    let ox = this.http.post<ListeAutoDto>(
+      "http://localhost:8080/cancella-auto",
+      dto
+    );
+    ox.subscribe(u => this.automobili = u.listaAuto);
+  }
 
   calcolaBollo() { }
 

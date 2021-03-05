@@ -8,6 +8,8 @@ public interface GestioneAutoService {
     ListeAutoDto inserisciAuto(Automobile auto);
 
     ListeAutoDto ricercaAuto(String criterio);
+    
+    ListeAutoDto cancellaAuto(Automobile auto);
 
     ListeAutoDto aggiorna();
 }

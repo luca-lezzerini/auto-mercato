@@ -31,6 +31,12 @@ public class GestioneAutoServiceImpl implements GestioneAutoService {
     }
 
     @Override
+    public ListeAutoDto cancellaAuto(Automobile auto) {
+        automobileRepository.delete(auto);
+        return aggiorna();
+    }
+    
+    @Override
     public ListeAutoDto aggiorna() {
         List<Automobile> lista = automobileRepository.findAll();
         return new ListeAutoDto(lista);

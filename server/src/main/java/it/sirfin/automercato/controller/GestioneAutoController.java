@@ -35,7 +35,7 @@ public class GestioneAutoController {
     @RequestMapping("/cancella-auto")
     @ResponseBody
     public ListeAutoDto cancellaAuto(@RequestBody AutoDto dto) {
-        throw new UnsupportedOperationException();
+        return gestioneAutoService.cancellaAuto(dto.getAutomobile());
     }
 
     @RequestMapping("/calcola-bollo")
