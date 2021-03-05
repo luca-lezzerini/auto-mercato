@@ -6,6 +6,7 @@
 <input type="text" [(ngModel)]="search" placeholder="ricerca">
 <button (click)="ricerca()">Cerca</button>
 <br>
+<!-- Tabella che visualizza la lista dei veicoli -->
 <table>
   <tr>
     <th>Targa</th>
@@ -13,11 +14,13 @@
     <th>Cilindrata</th>
     <th>Gestisci</th>
   </tr>
+  <!-- Itera sulle varie righe -->
   <tr *ngFor="let a of automobili">
     <td>{{a.targa}}</td>
     <td>{{a.modello}}</td>
     <td>{{a.cilindrata}}</td>
     <td>
+      <!-- Toolbar dei controlli per modifica e calcolo bollo -->
       <button (click)="rimuovi(a)">X</button>
       <button (click)="calcolaBollo(a)">Bollo</button>
     </td>
