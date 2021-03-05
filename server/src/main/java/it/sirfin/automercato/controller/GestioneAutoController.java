@@ -4,6 +4,8 @@ import it.sirfin.automercato.dto.AutoDto;
 import it.sirfin.automercato.dto.BolloDto;
 import it.sirfin.automercato.dto.CriterioRicercaDto;
 import it.sirfin.automercato.dto.ListeAutoDto;
+import it.sirfin.automercato.service.GestioneAutoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GestioneAutoController {
 
+    @Autowired
+    GestioneAutoService gestioneAutoService;
+    
     @RequestMapping("/inserisci-auto")
     @ResponseBody
     public ListeAutoDto inserisciAuto(@RequestBody AutoDto dto) {
-        throw new UnsupportedOperationException();
+        System.out.println("Sono in inserisciAuto " + dto);
+        return gestioneAutoService.inserisciAuto(dto.getAutomobile());
     }
 
     @RequestMapping("/ricerca-auto")
