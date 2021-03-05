@@ -16,7 +16,14 @@ export class AppComponent {
   bolloAnnuo = 0;
   automobili: Automobile[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.aggiorna();
+  }
+
+  aggiorna() {
+    this.http.get<ListeAutoDto>("http://localhost:8080/aggiorna-liste")
+      .subscribe(v => this.automobili = v.listaAuto);
+  }
 
   aggiungi() {
     // prepariamo i dati da inviare al server

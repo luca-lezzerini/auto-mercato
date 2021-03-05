@@ -44,7 +44,7 @@ public class GestioneAutoController {
         throw new UnsupportedOperationException();
     }
 
-    @RequestMapping("/reset")
+    @RequestMapping("/reset-db")
     @ResponseBody
     public ListeAutoDto resetDB() {
         throw new UnsupportedOperationException();
@@ -53,6 +53,6 @@ public class GestioneAutoController {
     @RequestMapping("/aggiorna-liste")
     @ResponseBody
     public ListeAutoDto aggiornaListe() {
-        throw new UnsupportedOperationException();
+        return gestioneAutoService.aggiorna();
     }
 }
