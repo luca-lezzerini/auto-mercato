@@ -1,3 +1,4 @@
+import { BolloDto } from './bollo-dto';
 import { CriterioRicercaDto } from './criterio-ricerca-dto';
 import { ListeAutoDto } from './liste-auto-dto';
 import { AutoDto } from './auto-dto';
@@ -67,7 +68,17 @@ export class AppComponent {
     ox.subscribe(u => this.automobili = u.listaAuto);
   }
 
-  calcolaBollo() { }
+  calcolaBollo(auto: Automobile) {
+    // prepara dati
+    let dto = new AutoDto();
+    dto.automobile = auto;
+
+    // chiama REST
+    this.http.post<BolloDto>(
+      "http://localhost:8080/calcola-bollo",
+      dto
+    ).subscribe(z => this.bolloAnnuo = z.importo);
+  }
 
   resetDB() { }
 }

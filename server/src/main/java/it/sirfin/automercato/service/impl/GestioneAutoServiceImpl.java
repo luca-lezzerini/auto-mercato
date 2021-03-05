@@ -1,5 +1,6 @@
 package it.sirfin.automercato.service.impl;
 
+import it.sirfin.automercato.dto.BolloDto;
 import it.sirfin.automercato.dto.ListeAutoDto;
 import it.sirfin.automercato.model.Automobile;
 import it.sirfin.automercato.repository.AutomobileRepository;
@@ -35,7 +36,13 @@ public class GestioneAutoServiceImpl implements GestioneAutoService {
         automobileRepository.delete(auto);
         return aggiorna();
     }
-    
+
+    @Override
+    public BolloDto calcolaBollo(Automobile auto) {
+        double bollo = auto.getCilindrata() / 10.0;
+        return new BolloDto(bollo);
+    }
+
     @Override
     public ListeAutoDto aggiorna() {
         List<Automobile> lista = automobileRepository.findAll();
